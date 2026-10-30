@@ -24,6 +24,26 @@ configurations {
     }
 }
 
+//This is for datagen -> Datagen is generated with neoforge and files are sent to common,
+// so it works on fabric without having to generate them there.
+loom {
+    accessWidenerPath = project(':common').loom.accessWidenerPath
+
+    runs {
+        data {
+            data()
+            property 'okasbetterdesert.datagen', 'true'
+
+            programArguments.addAll '--mod', "okasbetterdesert",
+                    '--all',
+                    '--output', project(':common').file('src/main/generated/resources/').getAbsolutePath(),
+                    '--existing', project(':common').file('src/main/resources/').getAbsolutePath()
+        }
+
+
+    }
+}
+
 repositories {
     maven {
         name = 'NeoForged'
