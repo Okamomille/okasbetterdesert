@@ -1,6 +1,6 @@
 package net.okamiz;
 
-public final class ExampleMod {
+public final class OkasBetterDesert {
     public static final String MOD_ID = "okasbetterdesert";
 
     public static void init() {
