@@ -1,8 +1,7 @@
 # Project exclude paths
-/.gradle/
-/build/
-/common/build/
-/fabric/.gradle/
-/fabric/build/
-/neoforge/.gradle/
-/neoforge/build/
+.gradle/
+build/
+run/
+.idea/
+hs_err_pid*.log
+*.log
