@@ -50,6 +50,14 @@
     "okasbetterdesert:magenta_tiled_terracotta_slab",
     "okasbetterdesert:pink_polished_terracotta_slab",
     "okasbetterdesert:pink_terracotta_brick_slab",
-    "okasbetterdesert:pink_tiled_terracotta_slab"
+    "okasbetterdesert:pink_tiled_terracotta_slab",
+    "okasbetterdesert:sandstone_brick_slab",
+    "okasbetterdesert:tiled_sandstone_slab",
+    "okasbetterdesert:small_sandstone_tile_slab",
+    "okasbetterdesert:engraved_sandstone_slab",
+    "okasbetterdesert:red_sandstone_brick_slab",
+    "okasbetterdesert:tiled_red_sandstone_slab",
+    "okasbetterdesert:small_red_sandstone_tile_slab",
+    "okasbetterdesert:engraved_red_sandstone_slab"
   ]
 }

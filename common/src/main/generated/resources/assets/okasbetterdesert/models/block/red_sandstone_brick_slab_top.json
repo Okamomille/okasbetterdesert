@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "okasbetterdesert:block/red_sandstone_bricks",
+    "side": "okasbetterdesert:block/red_sandstone_bricks",
+    "top": "okasbetterdesert:block/red_sandstone_bricks"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "okasbetterdesert:small_red_sandstone_tiles"
+  },
+  "result": {
+    "count": 1,
+    "id": "okasbetterdesert:small_red_sandstone_tile_stairs"
+  }
+}

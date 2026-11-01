@@ -24,12 +24,15 @@ public class DatagenBlockTagsProvider extends BlockTagsProvider {
             tag(BlockTags.MINEABLE_WITH_PICKAXE).add(b.getKey());
         });
 
-        BlocksRegistry.TERRACOTTA_STAIRS.values().forEach(s -> tag(BlockTags.STAIRS).add(s.get()));
-        BlocksRegistry.TERRACOTTA_SLABS.values().forEach(s -> tag(BlockTags.SLABS).add(s.get()));
+        BlocksRegistry.STAIRS.values().forEach(s -> tag(BlockTags.STAIRS).add(s.get()));
+        BlocksRegistry.SLABS.values().forEach(s -> tag(BlockTags.SLABS).add(s.get()));
 
-        Stream.concat(BlocksRegistry.TERRACOTTA_STAIRS.values().stream(), BlocksRegistry.TERRACOTTA_SLABS.values().stream())
+        Stream.concat(BlocksRegistry.STAIRS.values().stream(), BlocksRegistry.SLABS.values().stream())
                 .forEach(s -> tag(BlockTags.MINEABLE_WITH_PICKAXE).add(s.get()));
 
+        BlocksRegistry.WALLS.values().forEach(w -> tag(BlockTags.WALLS).add(w.get()));
+        Stream.of(BlocksRegistry.SANDSTONE_CUBES.stream(), BlocksRegistry.SANDSTONE_PILLAR_BLOCKS.stream(), BlocksRegistry.WALLS.values().stream())
+                .flatMap(s -> s).forEach(b -> tag(BlockTags.MINEABLE_WITH_PICKAXE).add(b.get()));
 
 
         BlocksRegistry.allWools().forEach(b -> tag(BlockTags.WOOL).add(b.get()));

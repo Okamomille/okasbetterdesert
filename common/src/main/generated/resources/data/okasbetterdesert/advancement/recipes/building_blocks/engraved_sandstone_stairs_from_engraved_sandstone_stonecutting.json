@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_engraved_sandstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "okasbetterdesert:engraved_sandstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "okasbetterdesert:engraved_sandstone_stairs_from_engraved_sandstone_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_engraved_sandstone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "okasbetterdesert:engraved_sandstone_stairs_from_engraved_sandstone_stonecutting"
+    ]
+  }
+}

@@ -24,16 +24,10 @@ public class DatagenRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(RecipeOutput output) {
-        BlocksRegistry.TERRACOTTA.values().forEach(b -> {
-            cut(output, b.get(), Blocks.TERRACOTTA, 1);
-            shapes(output, b, Blocks.TERRACOTTA);
+        BlocksRegistry.CUT_FROM.forEach((block, base) -> {
+            cut(output, block.get(), base, 1);
+            shapes(output, block, base);
         });
-
-        BlocksRegistry.COLORED_TERRACOTTA.values().forEach(byColor -> byColor.forEach((color, b) -> {
-            Block vanilla = BlocksRegistry.dyed(color, "terracotta");
-            cut(output, b.get(), vanilla, 1);
-            shapes(output, b, vanilla);
-        }));
 
         BlocksRegistry.WOOLS.forEach((pattern, byColor) -> byColor.forEach((color, wool) -> {
             Block vanilla = BlocksRegistry.dyed(color, "wool");
@@ -56,10 +50,17 @@ public class DatagenRecipeProvider extends RecipeProvider {
                 .save(out, ResourceLocation.fromNamespaceAndPath(OkasBetterDesert.MOD_ID, getConversionRecipeName(result, from) + "_stonecutting"));
     }
 
-    private void shapes(RecipeOutput out, RegistrySupplier<Block> base, Block vanilla) {
-        var stairs = BlocksRegistry.TERRACOTTA_STAIRS.get(base);
-        var slab = BlocksRegistry.TERRACOTTA_SLABS.get(base);
-        if (stairs == null) return; // chiseled
+    private void shapes(RecipeOutput out, RegistrySupplier<? extends Block> base, Block vanilla) {
+        var stairs = BlocksRegistry.STAIRS.get(base);
+        var slab = BlocksRegistry.SLABS.get(base);
+        var wall = BlocksRegistry.WALLS.get(base);
+        if (wall != null) {
+            wall(out, RecipeCategory.DECORATIONS, wall.get(), base.get());
+            for (ItemLike from : List.of(base.get(), vanilla)) cut(out, wall.get(), from, 1);
+        }
+        if (stairs == null) {
+            return; // chiseled
+        }
         stairBuilder(stairs.get(), Ingredient.of(base.get())).unlockedBy(getHasName(base.get()), has(base.get())).save(out);
         slab(out, RecipeCategory.BUILDING_BLOCKS, slab.get(), base.get());
         for (ItemLike from : List.of(base.get(), vanilla)) {

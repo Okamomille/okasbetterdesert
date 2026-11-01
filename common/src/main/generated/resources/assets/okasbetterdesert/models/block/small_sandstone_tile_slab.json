@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "okasbetterdesert:block/small_sandstone_tiles",
+    "side": "okasbetterdesert:block/small_sandstone_tiles",
+    "top": "okasbetterdesert:block/small_sandstone_tiles"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "okasbetterdesert:block/small_red_sandstone_tiles"
+  }
+}
