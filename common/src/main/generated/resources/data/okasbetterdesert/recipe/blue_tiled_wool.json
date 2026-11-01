@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "S": {
+      "item": "minecraft:string"
+    },
+    "X": {
+      "item": "minecraft:blue_wool"
+    }
+  },
+  "pattern": [
+    " X ",
+    "XSX",
+    " X "
+  ],
+  "result": {
+    "count": 4,
+    "id": "okasbetterdesert:blue_tiled_wool"
+  }
+}

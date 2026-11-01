@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cyan_polished_terracotta": {
+      "conditions": {
+        "items": [
+          {
+            "items": "okasbetterdesert:cyan_polished_terracotta"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "okasbetterdesert:cyan_polished_terracotta_stairs_from_cyan_polished_terracotta_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cyan_polished_terracotta"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "okasbetterdesert:cyan_polished_terracotta_stairs_from_cyan_polished_terracotta_stonecutting"
+    ]
+  }
+}

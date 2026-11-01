@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/carpet",
+  "textures": {
+    "wool": "okasbetterdesert:block/brown_tiled_wool"
+  }
+}

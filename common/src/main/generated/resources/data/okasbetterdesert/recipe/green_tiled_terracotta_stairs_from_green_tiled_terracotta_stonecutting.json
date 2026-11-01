@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "okasbetterdesert:green_tiled_terracotta"
+  },
+  "result": {
+    "count": 1,
+    "id": "okasbetterdesert:green_tiled_terracotta_stairs"
+  }
+}

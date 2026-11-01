@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "okasbetterdesert:block/green_polished_terracotta",
+    "side": "okasbetterdesert:block/green_polished_terracotta",
+    "top": "okasbetterdesert:block/green_polished_terracotta"
+  }
+}

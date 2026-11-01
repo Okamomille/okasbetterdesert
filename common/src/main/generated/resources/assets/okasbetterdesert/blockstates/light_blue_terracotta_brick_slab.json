@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "okasbetterdesert:block/light_blue_terracotta_brick_slab"
+    },
+    "type=double": {
+      "model": "okasbetterdesert:block/light_blue_terracotta_bricks"
+    },
+    "type=top": {
+      "model": "okasbetterdesert:block/light_blue_terracotta_brick_slab_top"
+    }
+  }
+}

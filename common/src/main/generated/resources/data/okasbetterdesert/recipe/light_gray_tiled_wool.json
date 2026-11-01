@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "S": {
+      "item": "minecraft:string"
+    },
+    "X": {
+      "item": "minecraft:light_gray_wool"
+    }
+  },
+  "pattern": [
+    " X ",
+    "XSX",
+    " X "
+  ],
+  "result": {
+    "count": 4,
+    "id": "okasbetterdesert:light_gray_tiled_wool"
+  }
+}

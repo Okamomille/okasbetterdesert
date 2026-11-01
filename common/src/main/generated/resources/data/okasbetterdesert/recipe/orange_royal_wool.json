@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "S": {
+      "item": "minecraft:string"
+    },
+    "X": {
+      "item": "minecraft:orange_wool"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "XSX",
+    "XXX"
+  ],
+  "result": {
+    "count": 8,
+    "id": "okasbetterdesert:orange_royal_wool"
+  }
+}

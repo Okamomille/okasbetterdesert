@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "okasbetterdesert:block/cyan_tiled_terracotta_slab"
+    },
+    "type=double": {
+      "model": "okasbetterdesert:block/cyan_tiled_terracotta"
+    },
+    "type=top": {
+      "model": "okasbetterdesert:block/cyan_tiled_terracotta_slab_top"
+    }
+  }
+}

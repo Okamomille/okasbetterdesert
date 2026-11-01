@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "okasbetterdesert:block/tiled_terracotta",
+    "side": "okasbetterdesert:block/tiled_terracotta",
+    "top": "okasbetterdesert:block/tiled_terracotta"
+  }
+}

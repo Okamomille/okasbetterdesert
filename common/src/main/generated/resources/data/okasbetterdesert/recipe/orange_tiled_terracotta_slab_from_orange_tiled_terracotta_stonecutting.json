@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "okasbetterdesert:orange_tiled_terracotta"
+  },
+  "result": {
+    "count": 2,
+    "id": "okasbetterdesert:orange_tiled_terracotta_slab"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "okasbetterdesert:pink_terracotta_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "okasbetterdesert:pink_terracotta_brick_stairs"
+  }
+}

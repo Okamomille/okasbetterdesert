@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "okasbetterdesert:block/green_tiled_terracotta",
+    "side": "okasbetterdesert:block/green_tiled_terracotta",
+    "top": "okasbetterdesert:block/green_tiled_terracotta"
+  }
+}

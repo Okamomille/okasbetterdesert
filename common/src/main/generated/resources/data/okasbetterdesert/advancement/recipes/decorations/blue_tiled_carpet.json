@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_blue_tiled_wool": {
+      "conditions": {
+        "items": [
+          {
+            "items": "okasbetterdesert:blue_tiled_wool"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "okasbetterdesert:blue_tiled_carpet"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_blue_tiled_wool"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "okasbetterdesert:blue_tiled_carpet"
+    ]
+  }
+}
