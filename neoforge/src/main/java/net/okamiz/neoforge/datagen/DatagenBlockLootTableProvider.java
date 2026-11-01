@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.Block;
 import net.okamiz.modded_registries.BlocksRegistry;
 
 import java.util.Set;
+import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 public class DatagenBlockLootTableProvider extends BlockLootSubProvider {
@@ -18,6 +19,10 @@ public class DatagenBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         BlocksRegistry.allTerracotta().forEach(b -> dropSelf(b.get()));
+        BlocksRegistry.TERRACOTTA_STAIRS.values().forEach(s -> dropSelf(s.get()));
+        BlocksRegistry.TERRACOTTA_SLABS.values().forEach(s -> add(s.get(), createSlabItemTable(s.get())));
+
+        Stream.concat(BlocksRegistry.allWools(), BlocksRegistry.CARPETS.values().stream()).forEach(b -> dropSelf(b.get()));
 
         dropSelf(BlocksRegistry.SMALL_CACTUS.get());
     }

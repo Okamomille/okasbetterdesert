@@ -23,6 +23,20 @@ public class DatagenBlockStateProvider extends BlockStateProvider {
         ModelFile small_cactus = existing(BlocksRegistry.SMALL_CACTUS.get());
         simpleBlockWithItem(BlocksRegistry.SMALL_CACTUS.get(), small_cactus);
 
+
+        BlocksRegistry.TERRACOTTA_STAIRS.forEach((base, stairs) -> {
+            stairsBlock(stairs.get(), blockTexture(base.get()));
+            simpleBlockItem(stairs.get(), new ModelFile.UncheckedModelFile(modLoc("block/" + stairs.getId().getPath())));
+        });
+        BlocksRegistry.TERRACOTTA_SLABS.forEach((base, slab) -> {
+            slabBlock(slab.get(), blockTexture(base.get()), blockTexture(base.get()));
+            simpleBlockItem(slab.get(), new ModelFile.UncheckedModelFile(modLoc("block/" + slab.getId().getPath())));
+        });
+
+
+        BlocksRegistry.allWools().forEach(b -> simpleBlockWithItem(b.get(), cubeAll(b.get())));
+        BlocksRegistry.CARPETS.forEach((wool, carpet) ->
+                simpleBlockWithItem(carpet.get(), models().carpet(carpet.getId().getPath(), blockTexture(wool.get()))));
     }
 
     private String name(Block block) {

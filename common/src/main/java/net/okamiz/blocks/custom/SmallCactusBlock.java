@@ -34,6 +34,10 @@ public class SmallCactusBlock extends CactusBlock {
                 && !levelReader.getBlockState(blockPos.above()).liquid();
     }
 
+    @Override
+    protected boolean isRandomlyTicking(BlockState state) {
+        return false;
+    }
 
     @Override
     protected VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {

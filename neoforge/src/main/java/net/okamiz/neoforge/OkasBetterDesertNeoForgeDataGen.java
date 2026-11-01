@@ -35,6 +35,7 @@ public class OkasBetterDesertNeoForgeDataGen {
         /* DATA */
         BlockTagsProvider blockTags = new DatagenBlockTagsProvider(packOutput, lookupProvider, existingFileHelper);
         generator.addProvider(event.includeServer(), blockTags);
+        generator.addProvider(event.includeServer(), new DatagenItemTagsProvider(packOutput, lookupProvider, blockTags.contentsGetter(), existingFileHelper));
 
         generator.addProvider(event.includeServer(), new LootTableProvider(packOutput, Collections.emptySet(),
                 List.of(new LootTableProvider.SubProviderEntry(DatagenBlockLootTableProvider::new, LootContextParamSets.BLOCK)),
@@ -42,5 +43,6 @@ public class OkasBetterDesertNeoForgeDataGen {
 
         generator.addProvider(event.includeServer(), new DatagenRecipeProvider(packOutput, lookupProvider));
         generator.addProvider(event.includeClient(), new DatagenLanguageProvider(packOutput));
+
     }
 }

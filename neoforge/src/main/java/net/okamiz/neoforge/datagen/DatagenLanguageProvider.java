@@ -18,8 +18,8 @@ public class DatagenLanguageProvider extends LanguageProvider {
     protected void addTranslations() {
         add("tab.okasbetterdesert.main_tab", "Oka's Better Desert");
         add("tab.okasbetterdesert.colored_blocks_tab", "Oka's: Colored Blocks");
-        add("block.okasbetterdesert.small_cactus", "Small Cactus");
-        BlocksRegistry.allTerracotta().forEach(b -> add(b.get(), titleCase(b.getId().getPath())));
+
+        BlocksRegistry.BLOCKS.forEach(b -> add(b.get(), titleCase(b.getId().getPath())));
     }
 
     private static String titleCase(String id) {

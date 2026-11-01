@@ -6,6 +6,7 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.okamiz.OkasBetterDesert;
@@ -23,6 +24,6 @@ public class CreativeTabsRegistry {
     public static final RegistrySupplier<CreativeModeTab> COLORED_BLOCKS_TAB = TABS.register("colored_blocks_tab", () ->
             CreativeTabRegistry.create(builder -> {
                 builder.title(Component.translatable("tab.okasbetterdesert.colored_blocks_tab"));
-                builder.icon(() -> new ItemStack(Items.CACTUS));
+                builder.icon(() -> new ItemStack(BlocksRegistry.COLORED_TERRACOTTA.get("polished_terracotta").get(DyeColor.BLUE).get()));
             }));
 }
