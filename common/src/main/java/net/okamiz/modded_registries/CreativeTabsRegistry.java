@@ -19,4 +19,10 @@ public class CreativeTabsRegistry {
                 builder.title(Component.translatable("tab.okasbetterdesert.main_tab"));
                 builder.icon(() -> new ItemStack(Items.CACTUS));
             }));
+
+    public static final RegistrySupplier<CreativeModeTab> COLORED_BLOCKS_TAB = TABS.register("colored_blocks_tab", () ->
+            CreativeTabRegistry.create(builder -> {
+                builder.title(Component.translatable("tab.okasbetterdesert.colored_blocks_tab"));
+                builder.icon(() -> new ItemStack(Items.CACTUS));
+            }));
 }

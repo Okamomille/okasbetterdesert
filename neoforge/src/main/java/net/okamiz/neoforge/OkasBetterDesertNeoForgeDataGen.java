@@ -41,5 +41,6 @@ public class OkasBetterDesertNeoForgeDataGen {
                 lookupProvider));
 
         generator.addProvider(event.includeServer(), new DatagenRecipeProvider(packOutput, lookupProvider));
+        generator.addProvider(event.includeClient(), new DatagenLanguageProvider(packOutput));
     }
 }
