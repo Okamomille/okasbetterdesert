@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "okasbetterdesert:block/cactus_pressure_plate"
+    },
+    "powered=true": {
+      "model": "okasbetterdesert:block/cactus_pressure_plate_down"
+    }
+  }
+}

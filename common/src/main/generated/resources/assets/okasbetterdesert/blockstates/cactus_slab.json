@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "okasbetterdesert:block/cactus_slab"
+    },
+    "type=double": {
+      "model": "okasbetterdesert:block/cactus_planks"
+    },
+    "type=top": {
+      "model": "okasbetterdesert:block/cactus_slab_top"
+    }
+  }
+}

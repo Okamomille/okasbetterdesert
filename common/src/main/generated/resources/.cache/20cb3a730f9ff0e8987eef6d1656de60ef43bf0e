@@ -1,6 +1,15 @@
-// 1.21.1	2026-11-01T19:35:49.0957503	Tags for minecraft:item mod id okasbetterdesert
+// 1.21.1	2026-11-02T23:32:03.1206713	Tags for minecraft:item mod id okasbetterdesert
+ce35b8761b711dce736704fdcbeec1ce7a8495bb data/minecraft/tags/item/fence_gates.json
+7535bc7b43b9666527597bd305ceb9d88d6821cc data/minecraft/tags/item/planks.json
 f00ec7f8c46a59ea39905268f5c3da8fd54b8bb3 data/minecraft/tags/item/slabs.json
 25f041f905388600e875cca92f1b96be212b2033 data/minecraft/tags/item/stairs.json
 7d866d214996bbaf4769dd000176816fb0ab9d8b data/minecraft/tags/item/terracotta.json
+4a6b194d7c6fb059b062baa512e2ae3cbb8121fa data/minecraft/tags/item/wooden_buttons.json
+03225abe3c5b7692176871dffd17d1cea972018e data/minecraft/tags/item/wooden_doors.json
+24e746bcb22c573689f628e935e9271e18d09821 data/minecraft/tags/item/wooden_fences.json
+1d539adfb4930e8a571bb46f2bcbca77701d99eb data/minecraft/tags/item/wooden_pressure_plates.json
+9d683d6f53f938dfcab68140e62be0f1fa3b51f0 data/minecraft/tags/item/wooden_slabs.json
+3c222919909c3c5935d6328fc78108d0d54b9c2f data/minecraft/tags/item/wooden_stairs.json
+a6b5cca7c1eb10b510e7e7d58d6a0e878301de6e data/minecraft/tags/item/wooden_trapdoors.json
 156bdd5c2f0376dbf295f964927e27f957e4db35 data/minecraft/tags/item/wool.json
 0f480c045627e1bfa394920f40ccd4e51c997673 data/minecraft/tags/item/wool_carpets.json

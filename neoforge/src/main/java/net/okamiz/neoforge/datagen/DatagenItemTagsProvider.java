@@ -24,5 +24,15 @@ public class DatagenItemTagsProvider extends ItemTagsProvider {
         copy(BlockTags.STAIRS, ItemTags.STAIRS);
         copy(BlockTags.SLABS, ItemTags.SLABS);
         copy(BlockTags.TERRACOTTA, ItemTags.TERRACOTTA);
+
+        copy(BlockTags.PLANKS, ItemTags.PLANKS);
+        copy(BlockTags.WOODEN_STAIRS, ItemTags.WOODEN_STAIRS);
+        copy(BlockTags.WOODEN_SLABS, ItemTags.WOODEN_SLABS);
+        copy(BlockTags.WOODEN_FENCES, ItemTags.WOODEN_FENCES);
+        copy(BlockTags.FENCE_GATES, ItemTags.FENCE_GATES);
+        copy(BlockTags.WOODEN_DOORS, ItemTags.WOODEN_DOORS);
+        copy(BlockTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
+        copy(BlockTags.WOODEN_BUTTONS, ItemTags.WOODEN_BUTTONS);
+        copy(BlockTags.WOODEN_PRESSURE_PLATES, ItemTags.WOODEN_PRESSURE_PLATES);
     }
 }

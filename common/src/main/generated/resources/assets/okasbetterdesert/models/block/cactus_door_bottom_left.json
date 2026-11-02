@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/door_bottom_left",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "okasbetterdesert:block/cactus_door_bottom",
+    "top": "okasbetterdesert:block/cactus_door_top"
+  }
+}

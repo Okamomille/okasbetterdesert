@@ -12,154 +12,233 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.okamiz.OkasBetterDesert;
 import net.okamiz.blocks.custom.SmallCactusBlock;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import java.util.stream.Stream;
 
 public class BlocksRegistry {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(OkasBetterDesert.MOD_ID, Registries.BLOCK);
 
-    private static final List<String> TERRACOTTA_VARIANTS = List.of("chiseled_terracotta", "polished_terracotta", "terracotta_bricks", "tiled_terracotta");
+    private static final List<DyeColor> COLOR_ORDER = List.of(
+            DyeColor.WHITE, DyeColor.LIGHT_GRAY, DyeColor.GRAY, DyeColor.BLACK, DyeColor.BROWN, DyeColor.RED, DyeColor.ORANGE,
+            DyeColor.YELLOW, DyeColor.LIME, DyeColor.GREEN, DyeColor.CYAN, DyeColor.LIGHT_BLUE, DyeColor.BLUE, DyeColor.PURPLE, DyeColor.MAGENTA, DyeColor.PINK);
 
+    private static final List<String> TERRACOTTA_VARIANTS = List.of("chiseled_terracotta", "polished_terracotta", "terracotta_bricks", "tiled_terracotta");
     private static final List<String> WOOL_PATTERNS = List.of("royal", "tiled");
 
     public static final Map<String, RegistrySupplier<Block>> TERRACOTTA = new LinkedHashMap<>();
     public static final Map<String, Map<DyeColor, RegistrySupplier<Block>>> COLORED_TERRACOTTA = new LinkedHashMap<>();
 
+    public static final Map<String, Map<DyeColor, RegistrySupplier<Block>>> WOOLS = new LinkedHashMap<>();
+    public static final Map<RegistrySupplier<Block>, RegistrySupplier<WoolCarpetBlock>> CARPETS = new LinkedHashMap<>();
+
+    public static final List<RegistrySupplier<Block>> SANDSTONE_CUBES = new ArrayList<>();
+    public static final List<RegistrySupplier<RotatedPillarBlock>> SANDSTONE_PILLARS = new ArrayList<>();
+
     public static final Map<RegistrySupplier<Block>, RegistrySupplier<StairBlock>> STAIRS = new LinkedHashMap<>();
     public static final Map<RegistrySupplier<Block>, RegistrySupplier<SlabBlock>> SLABS = new LinkedHashMap<>();
     public static final Map<RegistrySupplier<Block>, RegistrySupplier<WallBlock>> WALLS = new LinkedHashMap<>();
 
-    // Stonecutter source of every cuttable block (block -> vanilla base)
-    public static final Map<RegistrySupplier<? extends Block>, Block> CUT_FROM = new LinkedHashMap<>();
-
-    public static final Map<String, Map<DyeColor, RegistrySupplier<Block>>> WOOLS = new LinkedHashMap<>();
-    public static final Map<RegistrySupplier<Block>, RegistrySupplier<WoolCarpetBlock>> CARPETS = new LinkedHashMap<>();
-
-    // "%s" = sandstone / red_sandstone. Surfaces get stairs, slab and wall
-    private static final List<String> SANDSTONE_SURFACES = List.of("%s_bricks", "tiled_%s", "small_%s_tiles", "engraved_%s");
-    private static final List<String> SANDSTONE_PILLARS = List.of("%s_pillar", "small_tiled_%s_pillar");
-
-    public static final List<RegistrySupplier<Block>> SANDSTONE_CUBES = new ArrayList<>();
-    public static final List<RegistrySupplier<RotatedPillarBlock>> SANDSTONE_PILLAR_BLOCKS = new ArrayList<>();
-
-    private static final List<DyeColor> COLOR_ORDER = List.of(
-            DyeColor.WHITE, DyeColor.LIGHT_GRAY, DyeColor.GRAY, DyeColor.BLACK, DyeColor.BROWN, DyeColor.RED, DyeColor.ORANGE,
-            DyeColor.YELLOW, DyeColor.LIME, DyeColor.GREEN, DyeColor.CYAN, DyeColor.LIGHT_BLUE, DyeColor.BLUE, DyeColor.PURPLE, DyeColor.MAGENTA, DyeColor.PINK);
+    public static final Map<RegistrySupplier<? extends Block>, Block> STONECUTTER_INGREDIENTS = new LinkedHashMap<>();
 
 
     // REGISTERING BLOCKS IN THE INCONVENTIONNAL WAY (Ask @Okamiz for details)
     static {
-        TERRACOTTA_VARIANTS.forEach(v -> TERRACOTTA.put(v, terracotta(v, Blocks.TERRACOTTA)));
-
-        for (DyeColor color : COLOR_ORDER){
-            for (String variant : TERRACOTTA_VARIANTS) {
-                COLORED_TERRACOTTA.computeIfAbsent(variant, v ->
-                        new EnumMap<>(DyeColor.class)).put(color, terracotta(color.getName() + "_" + variant, dyed(color,"terracotta")));
-            }
-        }
-
-        for (DyeColor color : COLOR_ORDER) {
-            for (String pattern : WOOL_PATTERNS) {
-                WOOLS.computeIfAbsent(pattern, p -> new EnumMap<>(DyeColor.class)).put(color, wool(color, pattern));
-            }
-        }
-        for (DyeColor color : COLOR_ORDER) {
-            for (String pattern : WOOL_PATTERNS) {
-                CARPETS.put(WOOLS.get(pattern).get(color), carpet(color, pattern));
-            }
-        }
-
-        for (Block base : List.of(Blocks.SANDSTONE, Blocks.RED_SANDSTONE)) {
-            String stone = BuiltInRegistries.BLOCK.getKey(base).getPath();
-            Supplier<BlockBehaviour.Properties> props = () -> BlockBehaviour.Properties.ofFullCopy(base);
-            for (String surface : SANDSTONE_SURFACES) {
-                String name = surface.formatted(stone);
-                RegistrySupplier<Block> block = registerBlock(name, Block::new, props, CreativeTabsRegistry.MAIN_TAB);
-                SANDSTONE_CUBES.add(block);
-                CUT_FROM.put(block, base);
-                shapes(name, block, props, CreativeTabsRegistry.MAIN_TAB, true);
-            }
-            RegistrySupplier<Block> framed = registerBlock("framed_" + stone, Block::new, props, CreativeTabsRegistry.MAIN_TAB);
-            SANDSTONE_CUBES.add(framed);
-            CUT_FROM.put(framed, base);
-            for (String pillar : SANDSTONE_PILLARS) {
-                var block = registerBlock(pillar.formatted(stone), RotatedPillarBlock::new, props, CreativeTabsRegistry.MAIN_TAB);
-                SANDSTONE_PILLAR_BLOCKS.add(block);
-                CUT_FROM.put(block, base);
-            }
-        }
+        registerTerracotta();
+        registerWoolsAndCarpets();
+        registerSandstone();
     }
-
-
 
 
     // --------------------------- REGULAR BLOCK REGISTERS -------------------------------------------------------------------
 
     public static final RegistrySupplier<Block> SMALL_CACTUS = registerBlock("small_cactus", SmallCactusBlock::new,
-            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CACTUS).noOcclusion(), CreativeTabsRegistry.MAIN_TAB );
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CACTUS).noOcclusion(), CreativeTabsRegistry.MAIN_TAB);
+
+    /* CACTUS WOOD */
+
+    public static final RegistrySupplier<Block> CACTUS_PLANKS = registerBlock("cactus_planks",
+            props -> makeFlammable(new Block(props), 5, 20), copyOf(Blocks.BAMBOO_PLANKS), CreativeTabsRegistry.MAIN_TAB);
+
+    public static final RegistrySupplier<StairBlock> CACTUS_STAIRS = registerBlock("cactus_stairs",
+            props -> makeFlammable(new StairBlock(CACTUS_PLANKS.get().defaultBlockState(), props), 5, 20), copyOf(Blocks.BAMBOO_STAIRS), CreativeTabsRegistry.MAIN_TAB);
+
+    public static final RegistrySupplier<SlabBlock> CACTUS_SLAB = registerBlock("cactus_slab",
+            props -> makeFlammable(new SlabBlock(props), 5, 20), copyOf(Blocks.BAMBOO_SLAB), CreativeTabsRegistry.MAIN_TAB);
+
+    public static final RegistrySupplier<FenceBlock> CACTUS_FENCE = registerBlock("cactus_fence",
+            props -> makeFlammable(new FenceBlock(props), 5, 20), copyOf(Blocks.BAMBOO_FENCE), CreativeTabsRegistry.MAIN_TAB);
+
+    public static final RegistrySupplier<FenceGateBlock> CACTUS_FENCE_GATE = registerBlock("cactus_fence_gate",
+            props -> makeFlammable(new FenceGateBlock(WoodType.BAMBOO, props), 5, 20), copyOf(Blocks.BAMBOO_FENCE_GATE), CreativeTabsRegistry.MAIN_TAB);
+
+    public static final RegistrySupplier<DoorBlock> CACTUS_DOOR = registerBlock("cactus_door",
+            props -> new DoorBlock(BlockSetType.BAMBOO, props), copyOf(Blocks.BAMBOO_DOOR), CreativeTabsRegistry.MAIN_TAB);
+
+    public static final RegistrySupplier<TrapDoorBlock> CACTUS_TRAPDOOR = registerBlock("cactus_trapdoor",
+            props -> new TrapDoorBlock(BlockSetType.BAMBOO, props), copyOf(Blocks.BAMBOO_TRAPDOOR), CreativeTabsRegistry.MAIN_TAB);
+
+    public static final RegistrySupplier<ButtonBlock> CACTUS_BUTTON = registerBlock("cactus_button",
+            props -> new ButtonBlock(BlockSetType.BAMBOO, 30, props), copyOf(Blocks.BAMBOO_BUTTON), CreativeTabsRegistry.MAIN_TAB);
+
+    public static final RegistrySupplier<PressurePlateBlock> CACTUS_PRESSURE_PLATE = registerBlock("cactus_pressure_plate",
+            props -> new PressurePlateBlock(BlockSetType.BAMBOO, props), copyOf(Blocks.BAMBOO_PRESSURE_PLATE), CreativeTabsRegistry.MAIN_TAB);
 
 
+    // --------------------------- BLOCK FAMILIES -------------------------------------------------------------------
 
+    private static void registerTerracotta() {
+        for (String variant : TERRACOTTA_VARIANTS) {
+            TERRACOTTA.put(variant, registerTerracottaBlock(variant, Blocks.TERRACOTTA));
+            COLORED_TERRACOTTA.put(variant, new EnumMap<>(DyeColor.class));
+        }
 
-
-
-    // --------------------------- EXTERNS METHODS -------------------------------------------------------------------
-
-
-    private static RegistrySupplier<Block> wool(DyeColor color, String pattern) {
-        return registerBlock(color.getName() + "_" + pattern + "_wool", p -> flammable(new Block(p), 30, 60),
-                () -> BlockBehaviour.Properties.ofFullCopy(dyed(color, "wool")), CreativeTabsRegistry.COLORED_BLOCKS_TAB);
+        for (DyeColor color : COLOR_ORDER) {
+            for (String variant : TERRACOTTA_VARIANTS) {
+                String name = color.getName() + "_" + variant;
+                Block vanillaTerracotta = getVanillaDyedBlock(color, "terracotta");
+                COLORED_TERRACOTTA.get(variant).put(color, registerTerracottaBlock(name, vanillaTerracotta));
+            }
+        }
     }
 
-    private static RegistrySupplier<WoolCarpetBlock> carpet(DyeColor color, String pattern) {
-        return registerBlock(color.getName() + "_" + pattern + "_carpet", p -> flammable(new WoolCarpetBlock(color, p), 60, 20),
-                () -> BlockBehaviour.Properties.ofFullCopy(dyed(color, "carpet")), CreativeTabsRegistry.COLORED_BLOCKS_TAB);
-    }
+    private static RegistrySupplier<Block> registerTerracottaBlock(String name, Block vanillaTerracotta) {
+        Supplier<BlockBehaviour.Properties> properties = copyOf(vanillaTerracotta);
+        RegistrySupplier<Block> block = registerBlock(name, Block::new, properties, CreativeTabsRegistry.COLORED_BLOCKS_TAB);
+        STONECUTTER_INGREDIENTS.put(block, vanillaTerracotta);
 
-    private static <T extends Block> T flammable(T block, int igniteOdds, int burnOdds) {
-        ((FireBlock) Blocks.FIRE).setFlammable(block, igniteOdds, burnOdds);
+        if (!name.contains("chiseled")) {
+            registerStairsAndSlab(name, block, properties, CreativeTabsRegistry.COLORED_BLOCKS_TAB);
+        }
         return block;
     }
 
-    public static Stream<RegistrySupplier<Block>> allWools() {
-        return WOOLS.values().stream().flatMap(m -> m.values().stream());
+    private static void registerWoolsAndCarpets() {
+        for (String pattern : WOOL_PATTERNS) {
+            WOOLS.put(pattern, new EnumMap<>(DyeColor.class));
+        }
+
+        for (DyeColor color : COLOR_ORDER) {
+            for (String pattern : WOOL_PATTERNS) {
+                WOOLS.get(pattern).put(color, registerWool(color, pattern));
+            }
+        }
+
+        for (DyeColor color : COLOR_ORDER) {
+            for (String pattern : WOOL_PATTERNS) {
+                RegistrySupplier<Block> wool = WOOLS.get(pattern).get(color);
+                CARPETS.put(wool, registerCarpet(color, pattern));
+            }
+        }
+    }
+
+    private static RegistrySupplier<Block> registerWool(DyeColor color, String pattern) {
+        String name = color.getName() + "_" + pattern + "_wool";
+        return registerBlock(name, props -> makeFlammable(new Block(props), 30, 60),
+                copyOf(getVanillaDyedBlock(color, "wool")), CreativeTabsRegistry.COLORED_BLOCKS_TAB);
+    }
+
+    private static RegistrySupplier<WoolCarpetBlock> registerCarpet(DyeColor color, String pattern) {
+        String name = color.getName() + "_" + pattern + "_carpet";
+        return registerBlock(name, props -> makeFlammable(new WoolCarpetBlock(color, props), 60, 20),
+                copyOf(getVanillaDyedBlock(color, "carpet")), CreativeTabsRegistry.COLORED_BLOCKS_TAB);
+    }
+
+    private static void registerSandstone() {
+        registerSandstoneFamily("sandstone", Blocks.SANDSTONE);
+        registerSandstoneFamily("red_sandstone", Blocks.RED_SANDSTONE);
+    }
+
+    private static void registerSandstoneFamily(String stone, Block vanillaSandstone) {
+        Supplier<BlockBehaviour.Properties> properties = copyOf(vanillaSandstone);
+
+        List<String> surfaces = List.of(stone + "_bricks", "tiled_" + stone, "small_" + stone + "_tiles", "engraved_" + stone);
+        for (String name : surfaces) {
+            RegistrySupplier<Block> block = registerBlock(name, Block::new, properties, CreativeTabsRegistry.MAIN_TAB);
+            SANDSTONE_CUBES.add(block);
+            STONECUTTER_INGREDIENTS.put(block, vanillaSandstone);
+            registerStairsAndSlab(name, block, properties, CreativeTabsRegistry.MAIN_TAB);
+            registerWall(name, block, properties, CreativeTabsRegistry.MAIN_TAB);
+        }
+
+        RegistrySupplier<Block> framed = registerBlock("framed_" + stone, Block::new, properties, CreativeTabsRegistry.MAIN_TAB);
+        SANDSTONE_CUBES.add(framed);
+        STONECUTTER_INGREDIENTS.put(framed, vanillaSandstone);
+
+        List<String> pillars = List.of(stone + "_pillar", "small_tiled_" + stone + "_pillar");
+        for (String name : pillars) {
+            RegistrySupplier<RotatedPillarBlock> pillar = registerBlock(name, RotatedPillarBlock::new, properties, CreativeTabsRegistry.MAIN_TAB);
+            SANDSTONE_PILLARS.add(pillar);
+            STONECUTTER_INGREDIENTS.put(pillar, vanillaSandstone);
+        }
+    }
+
+    private static void registerStairsAndSlab(String baseName, RegistrySupplier<Block> baseBlock,
+                                              Supplier<BlockBehaviour.Properties> properties, DeferredSupplier<CreativeModeTab> creativeTab) {
+        String shapeName = getShapeName(baseName);
+
+        RegistrySupplier<StairBlock> stairs = registerBlock(shapeName + "_stairs",
+                props -> new StairBlock(baseBlock.get().defaultBlockState(), props), properties, creativeTab);
+        RegistrySupplier<SlabBlock> slab = registerBlock(shapeName + "_slab", SlabBlock::new, properties, creativeTab);
+
+        STAIRS.put(baseBlock, stairs);
+        SLABS.put(baseBlock, slab);
+    }
+
+    private static void registerWall(String baseName, RegistrySupplier<Block> baseBlock,
+                                     Supplier<BlockBehaviour.Properties> properties, DeferredSupplier<CreativeModeTab> creativeTab) {
+        RegistrySupplier<WallBlock> wall = registerBlock(getShapeName(baseName) + "_wall", WallBlock::new, properties, creativeTab);
+        WALLS.put(baseBlock, wall);
+    }
+
+    private static String getShapeName(String baseName) {
+        if (baseName.endsWith("_bricks") || baseName.endsWith("_tiles")) {
+            return baseName.substring(0, baseName.length() - 1);
+        }
+        return baseName;
     }
 
 
-    /** Vanilla dyed block, e.g. dyed(RED, "wool") -> minecraft:red_wool. */
-    public static Block dyed(DyeColor color, String suffix) {
+    // --------------------------- UTILS -------------------------------------------------------------------
+
+    public static List<RegistrySupplier<Block>> getAllTerracotta() {
+        List<RegistrySupplier<Block>> blocks = new ArrayList<>(TERRACOTTA.values());
+        for (Map<DyeColor, RegistrySupplier<Block>> blocksByColor : COLORED_TERRACOTTA.values()) {
+            blocks.addAll(blocksByColor.values());
+        }
+        return blocks;
+    }
+
+    public static List<RegistrySupplier<Block>> getAllWools() {
+        List<RegistrySupplier<Block>> blocks = new ArrayList<>();
+        for (Map<DyeColor, RegistrySupplier<Block>> blocksByColor : WOOLS.values()) {
+            blocks.addAll(blocksByColor.values());
+        }
+        return blocks;
+    }
+
+    public static Block getVanillaDyedBlock(DyeColor color, String suffix) {
         return BuiltInRegistries.BLOCK.get(ResourceLocation.withDefaultNamespace(color.getName() + "_" + suffix));
     }
 
-    /** Every terracotta block of the mod (uncolored + colored), for datagen loops. */
-    public static Stream<RegistrySupplier<Block>> allTerracotta() {
-        return Stream.concat(TERRACOTTA.values().stream(), COLORED_TERRACOTTA.values().stream().flatMap(m -> m.values().stream()));
-    }
-
-    // Registers stairs + slab (+ wall) right after their base block. "sandstone_bricks" -> "sandstone_brick_stairs"
-    private static void shapes(String name, RegistrySupplier<Block> block, Supplier<BlockBehaviour.Properties> props, DeferredSupplier<CreativeModeTab> tab, boolean wall) {
-        String prefix = name.replaceAll("(brick|tile)s$", "$1");
-        STAIRS.put(block, registerBlock(prefix + "_stairs", p -> new StairBlock(block.get().defaultBlockState(), p), props, tab));
-        SLABS.put(block, registerBlock(prefix + "_slab", SlabBlock::new, props, tab));
-        if (wall) {
-            WALLS.put(block, registerBlock(prefix + "_wall", WallBlock::new, props, tab));
-        }
-    }
-
-    private static RegistrySupplier<Block> terracotta(String name, Block base) {
-        Supplier<BlockBehaviour.Properties> props = () -> BlockBehaviour.Properties.ofFullCopy(base);
-        RegistrySupplier<Block> block = registerBlock(name, Block::new, props, CreativeTabsRegistry.COLORED_BLOCKS_TAB);
-        CUT_FROM.put(block, base);
-        if (!name.contains("chiseled")) {
-            shapes(name, block, props, CreativeTabsRegistry.COLORED_BLOCKS_TAB, false);
-        }
+    private static <T extends Block> T makeFlammable(T block, int igniteOdds, int burnOdds) {
+        FireBlock fire = (FireBlock) Blocks.FIRE;
+        fire.setFlammable(block, igniteOdds, burnOdds);
         return block;
+    }
+
+    private static Supplier<BlockBehaviour.Properties> copyOf(Block block) {
+        return () -> BlockBehaviour.Properties.ofFullCopy(block);
     }
 
     public static <T extends Block> RegistrySupplier<T> registerBlock(String name, Function<BlockBehaviour.Properties, T> factory,

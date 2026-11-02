@@ -1,12 +1,11 @@
 package net.okamiz.neoforge.datagen;
 
+import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.okamiz.OkasBetterDesert;
 import net.okamiz.modded_registries.BlocksRegistry;
-
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class DatagenLanguageProvider extends LanguageProvider {
 
@@ -19,10 +18,20 @@ public class DatagenLanguageProvider extends LanguageProvider {
         add("tab.okasbetterdesert.main_tab", "Oka's Better Desert");
         add("tab.okasbetterdesert.colored_blocks_tab", "Oka's: Colored Blocks");
 
-        BlocksRegistry.BLOCKS.forEach(b -> add(b.get(), titleCase(b.getId().getPath())));
+        for (RegistrySupplier<Block> block : BlocksRegistry.BLOCKS) {
+            add(block.get(), toDisplayName(block.getId().getPath()));
+        }
     }
 
-    private static String titleCase(String id) {
-        return Arrays.stream(id.split("_")).map(w -> Character.toUpperCase(w.charAt(0)) + w.substring(1)).collect(Collectors.joining(" "));
+    private static String toDisplayName(String id) {
+        StringBuilder displayName = new StringBuilder();
+        for (String word : id.split("_")) {
+            if (!displayName.isEmpty()) {
+                displayName.append(" ");
+            }
+            displayName.append(Character.toUpperCase(word.charAt(0)));
+            displayName.append(word.substring(1));
+        }
+        return displayName.toString();
     }
 }
