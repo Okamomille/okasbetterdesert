@@ -35,6 +35,7 @@ public class DatagenBlockStateProvider extends BlockStateProvider {
         cubeAllWithItem(BlocksRegistry.CACTUS_PLANKS.get());
 
         simpleBlockWithItem(BlocksRegistry.SMALL_CACTUS.get(), existing(BlocksRegistry.SMALL_CACTUS.get()));
+        crossBlock(BlocksRegistry.TINY_CACTUS.get());
 
         /* SHAPES */
         for (RegistrySupplier<Block> base : BlocksRegistry.STAIRS.keySet()) {
@@ -74,6 +75,7 @@ public class DatagenBlockStateProvider extends BlockStateProvider {
 
         trapdoorBlockWithRenderType(BlocksRegistry.CACTUS_TRAPDOOR.get(), blockTexture(BlocksRegistry.CACTUS_TRAPDOOR.get()), true, "cutout");
         blockItem(BlocksRegistry.CACTUS_TRAPDOOR.get(), "_bottom");
+
     }
 
     private void cubeAllWithItem(Block block) {
@@ -117,7 +119,7 @@ public class DatagenBlockStateProvider extends BlockStateProvider {
     private void crossBlock(Block block) {
         String name = name(block);
         simpleBlock(block, models().cross(name, modLoc("block/" + name)).renderType("cutout"));
-        itemModels().basicItem(block.asItem());
+        itemModels().withExistingParent(name, mcLoc("item/generated")).texture("layer0", modLoc("block/" + name));
     }
 
     private ModelFile existing(Block block) {

@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.okamiz.OkasBetterDesert;
 import net.okamiz.modded_registries.BlocksRegistry;
+import net.okamiz.modded_registries.ItemsRegistry;
 
 public class DatagenLanguageProvider extends LanguageProvider {
 
@@ -15,9 +16,18 @@ public class DatagenLanguageProvider extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
+        //OTHER
         add("tab.okasbetterdesert.main_tab", "Oka's Better Desert");
         add("tab.okasbetterdesert.colored_blocks_tab", "Oka's: Colored Blocks");
 
+
+
+        // ITEMS
+        add(ItemsRegistry.DRIED_CACTUS.get(), "Dried Cactus");
+        add(ItemsRegistry.CACTUS_SOUP.get(), "Cactus Soup");
+
+
+        // BLOCKS
         for (RegistrySupplier<Block> block : BlocksRegistry.BLOCKS) {
             add(block.get(), toDisplayName(block.getId().getPath()));
         }

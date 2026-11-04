@@ -14,6 +14,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
 import net.okamiz.OkasBetterDesert;
 import net.okamiz.modded_registries.BlocksRegistry;
+import net.okamiz.modded_registries.ItemsRegistry;
 
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -65,6 +66,41 @@ public class DatagenRecipeProvider extends RecipeProvider {
                 .recipeGroupPrefix("wooden")
                 .getFamily();
         generateRecipes(output, cactusFamily, FeatureFlags.VANILLA_SET);
+
+
+        /* FOOD */
+        driedCactusSmelting(output, BlocksRegistry.SMALL_CACTUS.get());
+        driedCactusSmelting(output, BlocksRegistry.TINY_CACTUS.get());
+        driedCactusSmokingAndCampfire(output, Blocks.CACTUS);
+        driedCactusSmokingAndCampfire(output, BlocksRegistry.SMALL_CACTUS.get());
+        driedCactusSmokingAndCampfire(output, BlocksRegistry.TINY_CACTUS.get());
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ItemsRegistry.CACTUS_SOUP.get())
+                .pattern("XXX")
+                .pattern(" B ")
+                .define('X', ItemsRegistry.DRIED_CACTUS.get())
+                .define('B', Items.BOWL)
+                .unlockedBy(getHasName(ItemsRegistry.DRIED_CACTUS.get()), has(ItemsRegistry.DRIED_CACTUS.get()))
+                .save(output);
+    }
+
+    private void driedCactusSmelting(RecipeOutput output, ItemLike cactus) {
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(cactus), RecipeCategory.FOOD, ItemsRegistry.DRIED_CACTUS.get(), 0.35f, 200)
+                .unlockedBy(getHasName(cactus), has(cactus))
+                .save(output, modRecipe("dried_cactus_from_smelting_" + getItemName(cactus)));
+    }
+
+    private void driedCactusSmokingAndCampfire(RecipeOutput output, ItemLike cactus) {
+        SimpleCookingRecipeBuilder.smoking(Ingredient.of(cactus), RecipeCategory.FOOD, ItemsRegistry.DRIED_CACTUS.get(), 0.35f, 100)
+                .unlockedBy(getHasName(cactus), has(cactus))
+                .save(output, modRecipe("dried_cactus_from_smoking_" + getItemName(cactus)));
+        SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(cactus), RecipeCategory.FOOD, ItemsRegistry.DRIED_CACTUS.get(), 0.35f, 600)
+                .unlockedBy(getHasName(cactus), has(cactus))
+                .save(output, modRecipe("dried_cactus_from_campfire_cooking_" + getItemName(cactus)));
+    }
+
+    private static ResourceLocation modRecipe(String name) {
+        return ResourceLocation.fromNamespaceAndPath(OkasBetterDesert.MOD_ID, name);
     }
 
     private void shapeRecipes(RecipeOutput output, RegistrySupplier<? extends Block> base, Block vanillaBlock) {

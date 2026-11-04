@@ -253,6 +253,7 @@
   "block.okasbetterdesert.tiled_terracotta": "Tiled Terracotta",
   "block.okasbetterdesert.tiled_terracotta_slab": "Tiled Terracotta Slab",
   "block.okasbetterdesert.tiled_terracotta_stairs": "Tiled Terracotta Stairs",
+  "block.okasbetterdesert.tiny_cactus": "Tiny Cactus",
   "block.okasbetterdesert.white_chiseled_terracotta": "White Chiseled Terracotta",
   "block.okasbetterdesert.white_polished_terracotta": "White Polished Terracotta",
   "block.okasbetterdesert.white_polished_terracotta_slab": "White Polished Terracotta Slab",
@@ -281,6 +282,8 @@
   "block.okasbetterdesert.yellow_tiled_terracotta_slab": "Yellow Tiled Terracotta Slab",
   "block.okasbetterdesert.yellow_tiled_terracotta_stairs": "Yellow Tiled Terracotta Stairs",
   "block.okasbetterdesert.yellow_tiled_wool": "Yellow Tiled Wool",
+  "item.okasbetterdesert.cactus_soup": "Cactus Soup",
+  "item.okasbetterdesert.dried_cactus": "Dried Cactus",
   "tab.okasbetterdesert.colored_blocks_tab": "Oka's: Colored Blocks",
   "tab.okasbetterdesert.main_tab": "Oka's Better Desert"
 }

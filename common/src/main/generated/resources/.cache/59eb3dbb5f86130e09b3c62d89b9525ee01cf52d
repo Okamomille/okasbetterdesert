@@ -1,4 +1,4 @@
-// 1.21.1	2026-11-02T23:32:03.1111579	Loot Tables
+// 1.21.1	2026-11-04T16:33:12.9352562	Loot Tables
 99ce375b7cd34d8b7b8c43af2adac9c71775b0cc data/okasbetterdesert/loot_table/blocks/black_chiseled_terracotta.json
 21745900bb5aa226a07f9f1a22f61cc12838e61c data/okasbetterdesert/loot_table/blocks/black_polished_terracotta.json
 f7a23041645bf906cb042f5d69fa77ea6bea7a36 data/okasbetterdesert/loot_table/blocks/black_polished_terracotta_slab.json
@@ -253,6 +253,7 @@ b65d157db920ca954dbf5bffc6abc4eed380910b data/okasbetterdesert/loot_table/blocks
 bbaefa49d625663ef1817bb851c576fafa82f34f data/okasbetterdesert/loot_table/blocks/tiled_terracotta.json
 cb77ab622070a7bf319a5c15f3717b800b240b8b data/okasbetterdesert/loot_table/blocks/tiled_terracotta_slab.json
 0dcf6d860e66d578878d6f166cb5ba42f5661d08 data/okasbetterdesert/loot_table/blocks/tiled_terracotta_stairs.json
+89c3847a39394136e751327d93ef3cda25003b14 data/okasbetterdesert/loot_table/blocks/tiny_cactus.json
 d5baefbb5e9adfd9b70fa0a63766996b8f34eca6 data/okasbetterdesert/loot_table/blocks/white_chiseled_terracotta.json
 712c2913e1fb1c10848a6e27cb63c4b5cc456e86 data/okasbetterdesert/loot_table/blocks/white_polished_terracotta.json
 6b101e30569e91e2a3e6e816c0d22edb73b3888a data/okasbetterdesert/loot_table/blocks/white_polished_terracotta_slab.json

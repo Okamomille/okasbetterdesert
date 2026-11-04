@@ -16,7 +16,9 @@ public class DatagenItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-       // flat(ItemsRegistry.ITEM.get());
+       flat(ItemsRegistry.DRIED_CACTUS.get());
+       flat(ItemsRegistry.CACTUS_SOUP.get());
+
 
     }
 

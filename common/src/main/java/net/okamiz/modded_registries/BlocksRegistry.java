@@ -14,8 +14,10 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraft.world.level.material.PushReaction;
 import net.okamiz.OkasBetterDesert;
 import net.okamiz.blocks.custom.SmallCactusBlock;
+import net.okamiz.blocks.custom.TinyCactusBlock;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -64,6 +66,9 @@ public class BlocksRegistry {
 
     public static final RegistrySupplier<Block> SMALL_CACTUS = registerBlock("small_cactus", SmallCactusBlock::new,
             () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CACTUS).noOcclusion(), CreativeTabsRegistry.MAIN_TAB);
+
+    public static final RegistrySupplier<Block> TINY_CACTUS = registerBlock("tiny_cactus", TinyCactusBlock::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.DEAD_BUSH).offsetType(BlockBehaviour.OffsetType.XZ), CreativeTabsRegistry.MAIN_TAB);
 
     /* CACTUS WOOD */
 
