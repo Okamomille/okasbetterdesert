@@ -1,0 +1,6 @@
+// 1.21.1	2026-11-04T17:04:50.6979885	Registries
+e66dd63e306d4bd3273326755d992d2df54daab3 data/okasbetterdesert/neoforge/biome_modifier/add_cactus_patches.json
+27dcab10e6c2e211de85f7a8968258596721cef5 data/okasbetterdesert/worldgen/configured_feature/small_cactus_patch.json
+d629e781f0df5ab048a38102180daee6ea53375a data/okasbetterdesert/worldgen/configured_feature/tiny_cactus_patch.json
+55e2a4b4c6de2bae9da7246193ae86ec25611c90 data/okasbetterdesert/worldgen/placed_feature/small_cactus_patch_placed.json
+681c1c12e433b7ea1ddb17a18928a5ad1da48c81 data/okasbetterdesert/worldgen/placed_feature/tiny_cactus_patch_placed.json

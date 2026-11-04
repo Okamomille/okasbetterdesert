@@ -3,6 +3,7 @@ package net.okamiz.fabric;
 import net.fabricmc.api.ModInitializer;
 
 import net.okamiz.OkasBetterDesert;
+import net.okamiz.fabric.worldgen.BiomeModifiersFabric;
 
 public final class OkasBetterDesertFabric implements ModInitializer {
     @Override
@@ -13,5 +14,7 @@ public final class OkasBetterDesertFabric implements ModInitializer {
 
         // Run our common setup.
         OkasBetterDesert.init();
+
+        BiomeModifiersFabric.generateModWorldGen();
     }
 }

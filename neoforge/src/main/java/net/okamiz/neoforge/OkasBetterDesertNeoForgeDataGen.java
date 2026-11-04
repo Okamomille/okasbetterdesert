@@ -44,5 +44,8 @@ public class OkasBetterDesertNeoForgeDataGen {
         generator.addProvider(event.includeServer(), new DatagenRecipeProvider(packOutput, lookupProvider));
         generator.addProvider(event.includeClient(), new DatagenLanguageProvider(packOutput));
 
+        generator.addProvider(event.includeServer(), new DatagenBiomeTagsProvider(packOutput, lookupProvider, existingFileHelper));
+        generator.addProvider(event.includeServer(), new DatapackProvider(packOutput, lookupProvider));
+
     }
 }
