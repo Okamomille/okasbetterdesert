@@ -13,4 +13,7 @@ public class TagsRegistry {
 
     public static final TagKey<Biome> HAS_DESERT_DUNGEON = TagKey.create(Registries.BIOME,
             ResourceLocation.fromNamespaceAndPath(OkasBetterDesert.MOD_ID, "has_structure/desert_dungeon"));
+
+    public static final TagKey<Biome> HAS_OASIS = TagKey.create(Registries.BIOME,
+            ResourceLocation.fromNamespaceAndPath(OkasBetterDesert.MOD_ID, "has_structure/oasis"));
 }

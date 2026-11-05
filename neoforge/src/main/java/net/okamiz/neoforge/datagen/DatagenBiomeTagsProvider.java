@@ -32,5 +32,10 @@ public class DatagenBiomeTagsProvider extends BiomeTagsProvider {
                 .addOptionalTag(Tags.Biomes.IS_DESERT)
         ;
 
+        tag(TagsRegistry.HAS_OASIS)
+                .add(Biomes.DESERT)
+                .addOptionalTag(Tags.Biomes.IS_DESERT)
+        ;
+
     }
 }

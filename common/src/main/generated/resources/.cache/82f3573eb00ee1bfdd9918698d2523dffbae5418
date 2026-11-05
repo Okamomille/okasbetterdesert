@@ -1,3 +1,4 @@
-// 1.21.1	2026-11-05T01:39:39.2774078	Tags for minecraft:worldgen/biome mod id okasbetterdesert
+// 1.21.1	2026-11-05T12:32:23.7501682	Tags for minecraft:worldgen/biome mod id okasbetterdesert
 fb7513a6a851f139c86664acee0ac30825e69b89 data/okasbetterdesert/tags/worldgen/biome/has_feature/cactus_patches.json
 d5195fc73c5f5c4536eea11b2fc2940a60bed4cd data/okasbetterdesert/tags/worldgen/biome/has_structure/desert_dungeon.json
+d5195fc73c5f5c4536eea11b2fc2940a60bed4cd data/okasbetterdesert/tags/worldgen/biome/has_structure/oasis.json

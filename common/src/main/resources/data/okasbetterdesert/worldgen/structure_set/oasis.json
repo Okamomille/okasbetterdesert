@@ -1,0 +1,20 @@
+{
+  "structures": [
+    {
+      "structure": "okasbetterdesert:oasis",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 40,
+    "separation": 10,
+    "frequency": 0.2,
+    "spread_type": "triangular",
+    "salt": 2084613957,
+    "exclusion_zone": {
+      "other_set": "minecraft:villages",
+      "chunk_count": 4
+    }
+  }
+}
