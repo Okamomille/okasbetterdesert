@@ -26,5 +26,11 @@ public class DatagenBiomeTagsProvider extends BiomeTagsProvider {
                 .addOptionalTag(Tags.Biomes.IS_DESERT)
                 .addOptionalTag(BiomeTags.IS_BADLANDS)
         ;
+
+        tag(TagsRegistry.HAS_DESERT_DUNGEON)
+                .add(Biomes.DESERT)
+                .addOptionalTag(Tags.Biomes.IS_DESERT)
+        ;
+
     }
 }

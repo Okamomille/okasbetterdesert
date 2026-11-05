@@ -82,6 +82,17 @@ public class DatagenRecipeProvider extends RecipeProvider {
                 .define('B', Items.BOWL)
                 .unlockedBy(getHasName(ItemsRegistry.DRIED_CACTUS.get()), has(ItemsRegistry.DRIED_CACTUS.get()))
                 .save(output);
+
+
+        /* DECO & MISC */
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, BlocksRegistry.JAR.get())
+                .pattern(" X ")
+                .pattern("X X")
+                .pattern("XXX")
+                .define('X', Blocks.TERRACOTTA)
+                .unlockedBy(getHasName(Blocks.TERRACOTTA), has(Blocks.TERRACOTTA))
+                .save(output);
     }
 
     private void driedCactusSmelting(RecipeOutput output, ItemLike cactus) {

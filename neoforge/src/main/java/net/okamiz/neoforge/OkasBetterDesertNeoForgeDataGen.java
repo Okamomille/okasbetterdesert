@@ -38,8 +38,10 @@ public class OkasBetterDesertNeoForgeDataGen {
         generator.addProvider(event.includeServer(), new DatagenItemTagsProvider(packOutput, lookupProvider, blockTags.contentsGetter(), existingFileHelper));
 
         generator.addProvider(event.includeServer(), new LootTableProvider(packOutput, Collections.emptySet(),
-                List.of(new LootTableProvider.SubProviderEntry(DatagenBlockLootTableProvider::new, LootContextParamSets.BLOCK)),
+                List.of(new LootTableProvider.SubProviderEntry(DatagenBlockLootTableProvider::new, LootContextParamSets.BLOCK),
+                        new LootTableProvider.SubProviderEntry(DatagenJarLootProvider::new, LootContextParamSets.BLOCK)),
                 lookupProvider));
+
 
         generator.addProvider(event.includeServer(), new DatagenRecipeProvider(packOutput, lookupProvider));
         generator.addProvider(event.includeClient(), new DatagenLanguageProvider(packOutput));

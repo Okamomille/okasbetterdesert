@@ -1,0 +1,47 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "okasbetterdesert:jar",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "has_loot": "true"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "value": "okasbetterdesert:jars/desert_jar"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:inverted",
+          "term": {
+            "block": "okasbetterdesert:jar",
+            "condition": "minecraft:block_state_property",
+            "properties": {
+              "has_loot": "true"
+            }
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "okasbetterdesert:jar"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "okasbetterdesert:blocks/jar"
+}

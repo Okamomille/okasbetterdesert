@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.PushReaction;
 import net.okamiz.OkasBetterDesert;
+import net.okamiz.blocks.custom.JarBlock;
 import net.okamiz.blocks.custom.SmallCactusBlock;
 import net.okamiz.blocks.custom.TinyCactusBlock;
 
@@ -98,6 +99,12 @@ public class BlocksRegistry {
 
     public static final RegistrySupplier<PressurePlateBlock> CACTUS_PRESSURE_PLATE = registerBlock("cactus_pressure_plate",
             props -> new PressurePlateBlock(BlockSetType.BAMBOO, props), copyOf(Blocks.BAMBOO_PRESSURE_PLATE), CreativeTabsRegistry.MAIN_TAB);
+
+
+    /* DECORATIONS & MISC */
+
+    public static final RegistrySupplier<JarBlock> JAR = registerBlock("jar", JarBlock::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).sound(SoundType.DECORATED_POT), CreativeTabsRegistry.MAIN_TAB);
 
 
     // --------------------------- BLOCK FAMILIES -------------------------------------------------------------------

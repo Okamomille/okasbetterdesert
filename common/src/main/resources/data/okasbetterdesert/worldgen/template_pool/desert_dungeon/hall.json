@@ -1,0 +1,14 @@
+{
+  "fallback": "okasbetterdesert:desert_dungeon/ends",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "okasbetterdesert:desert_dungeon/hall/entrance_hall",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      }
+    }
+  ]
+}

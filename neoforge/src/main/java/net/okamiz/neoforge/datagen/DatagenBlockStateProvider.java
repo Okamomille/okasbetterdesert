@@ -76,6 +76,12 @@ public class DatagenBlockStateProvider extends BlockStateProvider {
         trapdoorBlockWithRenderType(BlocksRegistry.CACTUS_TRAPDOOR.get(), blockTexture(BlocksRegistry.CACTUS_TRAPDOOR.get()), true, "cutout");
         blockItem(BlocksRegistry.CACTUS_TRAPDOOR.get(), "_bottom");
 
+
+        /* DECORATION & MISC */
+
+        horizontalBlock(BlocksRegistry.JAR.get(), existing(BlocksRegistry.JAR.get()));
+        simpleBlockItem(BlocksRegistry.JAR.get(), existing(BlocksRegistry.JAR.get()));
+
     }
 
     private void cubeAllWithItem(Block block) {
